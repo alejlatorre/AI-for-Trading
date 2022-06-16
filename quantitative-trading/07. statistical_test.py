@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import scipy.stats as stats
 
+IN_PATH = 'data/'
+
 def analyze_returns(net_returns):
     """
     Perform a t-test, with the null hypothesis being that the mean return is zero.
@@ -26,13 +28,16 @@ def analyze_returns(net_returns):
     t, p = stats.ttest_1samp(net_returns, null_hypothesis)
     
     return t, p/2
-    
-def test_run(filename='net_returns.csv', sep=','):
+        
+
+def test_run(filename, sep=','):
     """Test run analyze_returns() with net strategy returns from a file."""
-    net_returns = pd.Series.from_csv(filename, header=0)
-    t, p = analyze_returns(net_returns)
+    # net_returns = pd.Series.from_csv(filename, header=0)
+    net_returns = pd.read_csv(filename, header=0)
+    t, p = analyze_returns(net_returns['return'])
     print("t-statistic: {:.3f}\np-value: {:.6f}".format(t, p))
 
 
 if __name__ == '__main__':
-    test_run()
+    filename = 'net_returns.csv'
+    test_run(filename=IN_PATH + filename)
