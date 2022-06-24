@@ -1,6 +1,6 @@
 cvxpy==1.2.1
 ecos==2.0.10
-numpy==1.21.6
+numpy==1.22.0
 osqp==0.6.2.post5
 pandas==1.1.5
 python-dateutil==2.8.2
